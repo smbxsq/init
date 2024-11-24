@@ -20,28 +20,19 @@ clear
 echo "Installing packages..."
 sleep 3s
 	# XFCE4
-	sudo xbps-install xfce4-clipman-plugin xfce4-notifyd xfce4-panel xfce4-panel-appmenu xfce4-pulseaudio-plugin xfce4-screenshooter xfce4-session xfce4-settings xfce4-taskmanager xfce4-terminal Thunar thunar-volman thunar-archive-plugin thunar-media-tags-plugin xfwm4 xfdesktop gvfs gvfs-mtp gvfs-gphoto2 xfce-polkit xdg-utils xdotool paper-icon-theme
+	sudo xbps-install xfce4-notifyd xfce4-panel xfce4-pulseaudio-plugin xfce4-screenshooter xfce4-session xfce4-settings xfce4-taskmanager xfce4-terminal Thunar thunar-volman thunar-archive-plugin thunar-media-tags-plugin xfwm4 xfdesktop gvfs xfce-polkit xdg-utils xdotool paper-icon-theme
   #Xorg
   sudo xbps-install -Sy xorg-minimal xf86-video-amdgpu xf86-input-libinput xinit
 # Fonts
-	sudo xbps-install -Sy font-hack-ttf fontconfig  freetype google-fonts-ttf noto-fonts-emoji noto-fonts-ttf nerd-fonts font-awesome
+	sudo xbps-install -Sy font-hack-ttf fontconfig freetype google-fonts-ttf noto-fonts-emoji noto-fonts-ttf nerd-fonts-ttf
 	# General graphics drivers
 	sudo xbps-install -Sy vkd3d vulkan-loader  
 	# AMD drivers
 	sudo xbps-install -Sy linux-firmware-amd xf86-video-amdgpu mesa-ati-dri mesa-vulkan-radeon	mesa-vulkan
-#XFCE4 panels / docks / appmenus
-	sudo xbps-install -Sy appmenu-gtk-module appmenu-gtk3-module plank polybar rofi
-	#Linux Headers
-	sudo xbps-install -Sy linux-headers linux-lts-headers
   # Build essentials
-	sudo xbps-install -Sy linux-tools gcc ctags make cmake rsync git lynx base-deve cargo rust meson sassc python3-pip nodejs lazygit github-cli build ninja 
+	sudo xbps-install -Sy linux-tools make cmake rsync base-devel cargo rust meson sassc python3-pip nodejs lazygit git wget curl build ninja meson 
 	#other
 	sudo xbps-install -Sy octoxbps
-	sudo xbps-install -Sy socklog-void
-	sudo xbps-install -Sy dconf-editor
-	sudo xbps-install -Sy android-file-transfer-linux
-	sudo xbps-install -Sy amdvlk
-  sudo xbps-install -Sy openjdk-jre
 
 echo "Configuring system...
 
@@ -54,14 +45,7 @@ echo "Configuring system...
 	#sudo ln -s /etc/sv/cupsd /var/service/
 	#sudo ln -s /etc/sv/uuidd /var/service/
 	sudo ln -s /etc/sv/alsa /var/service/
-	#sudo ln -s /etc/sv/libvirtd /var/service/
-	#sudo ln -s /etc/sv/virtlogd /var/service/
-	#sudo ln -s /etc/sv/virtlockd /var/service/
-	sudo ln -s /etc/sv/socklog-unix /var/service/
-	#sudo ln -s /etc/sv/nanoklogd /var/service/
-	#sudo ln -s /etc/sv/dnscrypt-proxy /var/service/
-
-	sudo resolvconf -u
+udo resolvconf -u
 
 	#sudo ufw default deny
 	#sudo ufw allow from 192.168.0.0/24
@@ -77,16 +61,6 @@ echo "Configuring system...
 	sudo ln -s /usr/share/fontconfig/conf.avail/50-user.conf /etc/fonts/conf.d/
 	sudo ln -s /usr/share/fontconfig/conf.avail/70-no-bitmaps.conf /etc/fonts/conf.d/
 
-	sudo chsh -s /usr/bin/fish $USER
-
-echo "Adding user to some groups..."
-sleep 3s
-	sudo usermod -aG input $USER
-	sudo usermod -aG audio $USER
-	sudo usermod -aG video $USER
-	#sudo usermod -aG libvirt $USER
-	#sudo usermod -aG kvm $USER
-	sudo usermod -aG socklog $USER
-
+	sudo chsh -s /usr/bin/bash $USER
 clear
 read -p "Done"
