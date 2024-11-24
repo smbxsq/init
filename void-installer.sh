@@ -33,6 +33,10 @@ sleep 3s
 	sudo xbps-install -Sy linux-tools make cmake rsync base-devel cargo rust meson sassc python3-pip nodejs lazygit git wget curl build ninja meson 
 	#other
 	sudo xbps-install -Sy octoxbps
+ 
+# flatpak
+sudo xbps-install flatpak
+sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
 echo "Configuring system...
 
